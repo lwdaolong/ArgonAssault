@@ -8,7 +8,17 @@ public class StartMenu : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        int numMusicPlayers = FindObjectsOfType<StartMenu>().Length;
+        if(numMusicPlayers > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(this.gameObject);
+
+        }
+
     }
 
 
