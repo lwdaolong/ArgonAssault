@@ -8,6 +8,7 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Player : MonoBehaviour
 {
     [SerializeField] GameObject DeathFX;
+    [SerializeField] GameObject[] Guns;
     float startTime;
 
     [Header("Movement Values")]
@@ -49,6 +50,12 @@ public class Player : MonoBehaviour
         {
             ProcessTranslation();
             ProcessRotation();
+            Shoot();
+        }
+        else
+        {
+            DeactivateGuns();
+
         }
 
     }
@@ -92,5 +99,32 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void Shoot()
+    {
+        if (CrossPlatformInputManager.GetButton("Fire1"))
+        {
+            ActivateGuns();
+        }
+        else
+        {
+            DeactivateGuns();
+        }
+    }
+
+    private void ActivateGuns()
+    {
+        foreach(GameObject gun in Guns)
+        {
+            gun.SetActive(true);
+        }
+    }
+
+    private void DeactivateGuns()
+    {
+        foreach (GameObject gun in Guns)
+        {
+            gun.SetActive(false);
+        }
+    }
 
 }

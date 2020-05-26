@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] int hitPoints = 10;
+
     [SerializeField] GameObject deathfx;
 
     ScoreBoard scoreboard;
@@ -33,7 +35,8 @@ public class Enemy : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        if (alive)
+        hitPoints--;
+        if ( hitPoints < 1)
         {
             alive = false;
             deathfx.SetActive(true);
