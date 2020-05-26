@@ -6,9 +6,13 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] GameObject deathfx;
+
+    ScoreBoard scoreboard;
+    bool alive = true;
     // Start is called before the first frame update
     void Start()
     {
+        scoreboard = FindObjectOfType<ScoreBoard>();
         AddComponents();
     }
 
@@ -29,15 +33,23 @@ public class Enemy : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        deathfx.SetActive(true);
-        GetComponent<Rigidbody>().useGravity = true;
-        Invoke("DestroyOBJ", 1f);
+        if (alive)
+        {
+            alive = false;
+            deathfx.SetActive(true);
+            GetComponent<Rigidbody>().useGravity = true;
+            Invoke("DestroyOBJ", 1f);
+
+        }
+
 
 
     }
 
     void DestroyOBJ()
     {
+        scoreboard.addScore();
+
         Destroy(gameObject);
     }
 

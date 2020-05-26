@@ -33,11 +33,12 @@ public class Player : MonoBehaviour
 
     bool isControlEnabled = true;
 
-
+    ScoreBoard scoredboard;
 
     // Start is called before the first frame update
     void Start()
     {
+        scoredboard = FindObjectOfType<ScoreBoard>();
         startTime = Time.time;
     }
 
