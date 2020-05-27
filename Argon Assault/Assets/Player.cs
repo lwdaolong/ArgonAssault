@@ -115,7 +115,8 @@ public class Player : MonoBehaviour
     {
         foreach(GameObject gun in Guns)
         {
-            gun.SetActive(true);
+            var gunemission = gun.GetComponent<ParticleSystem>().emission;
+            gunemission.enabled = true;
         }
     }
 
@@ -123,7 +124,9 @@ public class Player : MonoBehaviour
     {
         foreach (GameObject gun in Guns)
         {
-            gun.SetActive(false);
+            var gunemission = gun.GetComponent<ParticleSystem>().emission;
+            gunemission.enabled = false;
+
         }
     }
 
